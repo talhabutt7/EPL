@@ -26,15 +26,21 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 
-  def create
-    player = Player.new(player_params)
+  def update
+    player = Player.find(params[:id])
 
-    if player.save
+    if player.update(player_params)
       redirect_to "/players"
     else
       flash[:errors] = player.errors.full_messages
-      redirect_to "/players/new"
+      redirect_to "/players/#{player.id}/edit"
     end
+  end
+
+  def delete
+    player=Player.find(params[:id])
+    player.delete
+    redirect_to"/players"
   end
 
   private

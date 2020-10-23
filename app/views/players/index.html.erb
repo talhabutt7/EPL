@@ -1,4 +1,4 @@
-<h1>THere are <%= @players.count %> players in our league</h1>
+<h1>There are <%= @players.count %> players in our league</h1>
 
 <table>
   <thead>
@@ -16,11 +16,13 @@
       <td><%= player.last_name %></td>
       <td>
         <a href="/players/<%= player.id %>"> Show Profile </a> |
-        <a href="/players/<%= player.id %>/edit"> Edit Profile</a>
+        <a href="/players/<%= player.id %>/edit"> Edit Profile</a> |
+        <a href="/players/<%= player.id %>" data-method = "delete" data-confirm="Are you sure?"> Delete </a>
+
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<a href="/players/new">Add Player</a>
+<a href="/players/new">Add Player</a> | <%= link_to "Log Out", log_out_path %>
